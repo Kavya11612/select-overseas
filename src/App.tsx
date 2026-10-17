@@ -8,6 +8,7 @@ import ContactPage from '@/pages/ContactPage';
 import ServiceDetail from '@/components/ServiceDetail';
 import BlogPage from '@/components/BlogPage';
 import BlogPost from '@/components/BlogPost';
+import PolicyPage from '@/pages/PolicyPage';
 
 export default function App() {
   return (
@@ -22,6 +23,10 @@ export default function App() {
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="privacy-policy" element={<PolicyPage />} />
+          <Route path="terms-conditions" element={<PolicyPage />} />
+          <Route path="anti-fraud-policy" element={<PolicyPage />} />
+          <Route path="refund-returns" element={<PolicyPage />} />
           <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>

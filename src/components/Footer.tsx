@@ -1,76 +1,105 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Instagram, Linkedin, Facebook, ArrowUpRight } from 'lucide-react';
-import { contactInfo, navLinks } from '@/data';
-import BrandLogo from '@/components/BrandLogo';
+import { Phone, Mail, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
+import { contactInfo } from '@/data';
+
+const FOOTER_BG =
+  'https://selectoverseaseducation.com/wp-content/uploads/2025/09/Footer01-scaled.webp';
+
+const visaServices = [
+  { label: 'UK Visitor Visa', href: '/services/uk-visitor-visa' },
+  { label: 'UK Health care professionals Visa', href: '/services/uk-health-care-professionals-visa' },
+  { label: 'Student Visa', href: '/services/student-visa' },
+  { label: 'Dependant Visa', href: '/services/dependent-visa' },
+  { label: 'Business Visa', href: '/services/business-visa' },
+];
 
 const quickLinks = [
-  { label: 'Privacy Policy', href: '#' },
-  { label: 'Terms & Conditions', href: '#' },
-  { label: 'Anti-Fraud Policy', href: '#' },
-  { label: 'Return, Refund & Cancellation Policy', href: '#' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms & Conditions', href: '/terms-conditions' },
+  { label: 'Anti-Fraud Policy', href: '/anti-fraud-policy' },
+  { label: 'Return, Refund & Cancellation Policy.', href: '/refund-returns' },
+];
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+    </svg>
+  );
+}
+
+const socials = [
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/selectoverseaseducation',
+    Icon: Facebook,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/selectoverseaseducation/',
+    Icon: Instagram,
+  },
+  {
+    label: 'X',
+    href: 'https://x.com/selectoverseas',
+    Icon: XIcon,
+  },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@selectoverseaseducation',
+    Icon: Youtube,
+  },
 ];
 
 export default function Footer() {
-  const visaServices =
-    navLinks.find((l) => l.label === 'Services')?.children?.slice(0, 5) ?? [];
-
   return (
-    <footer className="relative overflow-hidden bg-neutral-950 text-neutral-300">
-      <div className="absolute inset-0 bg-grid-dark opacity-60" />
-      <div className="container relative py-16 lg:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <BrandLogo className="rounded-xl bg-white px-2.5 py-1.5" />
-            <p className="mt-5 text-sm leading-relaxed text-neutral-400">
-              Select Overseas Education is committed to helping students achieve international academic
-              success through trusted counselling, transparent guidance, and world-class support
-              services.
+    <footer
+      className="relative overflow-hidden bg-[#0a2540] text-white bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url('${FOOTER_BG}')` }}
+    >
+      <div className="absolute inset-0 bg-[#0a2540]/55" />
+
+      <div className="container relative py-14 lg:py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          {/* Column 1 */}
+          <div className="lg:border-r lg:border-white/20 lg:pr-8">
+            <p className="text-[15px] leading-relaxed text-white">
+              Select Overseas Education is committed to helping students achieve international
+              academic success through trusted counselling, transparent guidance, and world-class
+              support services.
             </p>
-            <div className="mt-6 flex gap-3">
-              {[
-                {
-                  Icon: Instagram,
-                  href: 'https://www.instagram.com/selectoverseaseducation/',
-                  label: 'Instagram',
-                },
-                {
-                  Icon: Linkedin,
-                  href: 'https://www.linkedin.com/company/select-overseas-education',
-                  label: 'LinkedIn',
-                },
-                {
-                  Icon: Facebook,
-                  href: 'https://www.facebook.com/selectoverseaseducation',
-                  label: 'Facebook',
-                },
-              ].map(({ Icon, href, label }) => (
+            <h4 className="mt-8 text-lg font-bold text-white">Office Location</h4>
+            <p className="mt-3 text-[15px] leading-relaxed text-white">
+              Office:
+              <br />
+              1 St Floor, Plot No: 08, Vittal Nagar, Madhapur, Hyderabad -500081
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              {socials.map(({ label, href, Icon }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-neutral-300 ring-1 ring-white/10 transition hover:bg-primary-600 hover:text-white"
                   aria-label={label}
+                  className="flex h-11 w-11 items-center justify-center rounded-md bg-[#f39200] text-white transition hover:bg-[#d97d00]"
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white">Office Location</h4>
-            <p className="mt-5 flex items-start gap-3 text-sm text-neutral-400">
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary-400" />
-              {contactInfo.address}
-            </p>
-            <h4 className="mt-8 text-sm font-semibold uppercase tracking-wider text-white">
-              Visa Services
-            </h4>
-            <ul className="mt-4 space-y-2.5">
+          {/* Column 2 */}
+          <div className="lg:border-r lg:border-white/20 lg:px-8">
+            <h4 className="text-lg font-bold text-white">Visa services</h4>
+            <ul className="mt-5 space-y-3">
               {visaServices.map((item) => (
                 <li key={item.label}>
-                  <Link to={item.href} className="text-sm text-neutral-400 hover:text-primary-400">
+                  <Link
+                    to={item.href}
+                    className="text-[15px] text-white transition hover:text-[#f39200]"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -78,61 +107,68 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h4>
-            <ul className="mt-5 space-y-2.5">
+          {/* Column 3 */}
+          <div className="lg:border-r lg:border-white/20 lg:px-8">
+            <h4 className="text-lg font-bold text-white">Quick Links</h4>
+            <ul className="mt-5 space-y-3">
               {quickLinks.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="text-sm text-neutral-400 hover:text-primary-400">
+                  <Link
+                    to={item.href}
+                    className="text-[15px] text-white transition hover:text-[#f39200]"
+                  >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
-              Contact Us Anytime
-            </h4>
-            <ul className="mt-5 space-y-3 text-sm">
-              {contactInfo.phones.map((phone) => (
-                <li key={phone}>
-                  <a
-                    href={`tel:${phone.replace(/\s/g, '')}`}
-                    className="flex items-center gap-3 text-neutral-400 hover:text-primary-400"
-                  >
-                    <Phone className="h-4 w-4 shrink-0 text-primary-400" />
-                    {phone}
+          {/* Column 4 */}
+          <div className="lg:pl-8">
+            <h4 className="text-lg font-bold text-white">Contact Us Anytime</h4>
+            <ul className="mt-5 space-y-5 text-[15px] text-white">
+              <li className="flex items-start gap-3">
+                <Phone className="mt-0.5 h-5 w-5 shrink-0 stroke-[1.75] text-[#f39200]" />
+                <div className="space-y-1">
+                  <a href="tel:04066333443" className="block transition hover:text-[#f39200]">
+                    040-66333443
                   </a>
-                </li>
-              ))}
-              <li>
+                  <a href="tel:+917032037375" className="block transition hover:text-[#f39200]">
+                    +91 7032037375 +91 78935 37375
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail className="mt-0.5 h-5 w-5 shrink-0 stroke-[1.75] text-[#f39200]" />
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="flex items-center gap-3 break-all text-neutral-400 hover:text-primary-400"
+                  className="break-all transition hover:text-[#f39200]"
                 >
-                  <Mail className="h-4 w-4 shrink-0 text-primary-400" />
                   {contactInfo.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-neutral-400">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary-400" />
+              <li className="flex items-start gap-3">
+                <Clock className="mt-0.5 h-5 w-5 shrink-0 stroke-[1.75] text-[#f39200]" />
                 <span>
-                  {contactInfo.hours}
+                  Mon–Sat:
                   <br />
-                  {contactInfo.holiday}
+                  8.00am – 06.00pm
+                  <br />
+                  Holiday : Closed
                 </span>
               </li>
             </ul>
-            <Link to="/contact" className="btn-accent mt-6">
-              Book Free Consultation <ArrowUpRight className="h-4 w-4" />
-            </Link>
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-8 text-center text-xs text-neutral-500">
-          Copyright © {new Date().getFullYear()} selectoverseaseducation. All Rights Reserved.
+      </div>
+
+      <div className="relative border-t border-white/25 bg-[#061a2e]/95">
+        <div className="container py-5 text-center">
+          <p className="text-sm font-medium text-white sm:text-[15px]">
+            Copyright © {new Date().getFullYear()} selectoverseaseducation. All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>
