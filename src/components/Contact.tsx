@@ -68,7 +68,7 @@ export default function Contact() {
       <div className="absolute inset-0 bg-grid opacity-40" />
       <div className="container relative">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <div className="wow fadeInLeft">
+          <div>
             <span className="section-label">Contact Us</span>
             <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-neutral-900 text-balance sm:text-4xl">
               Need Help For Visa? <span className="gradient-text">Contact Us!</span>
@@ -130,7 +130,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="wow fadeInRight" data-wow-delay="150ms">
+          <div>
             <div className="rounded-3xl bg-white p-8 shadow-2xl ring-1 ring-neutral-100 sm:p-10">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-16 text-center">

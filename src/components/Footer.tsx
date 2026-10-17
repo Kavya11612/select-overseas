@@ -31,7 +31,7 @@ function XIcon({ className }: { className?: string }) {
 const socials = [
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/selectoverseaseducation',
+    href: 'https://www.facebook.com/p/Select-overseas-education-consultancy-100094552617203/',
     Icon: Facebook,
   },
   {
@@ -46,7 +46,7 @@ const socials = [
   },
   {
     label: 'YouTube',
-    href: 'https://www.youtube.com/@selectoverseaseducation',
+    href: 'https://www.youtube.com/@selectoverseaseducation3306',
     Icon: Youtube,
   },
 ];

@@ -9,38 +9,65 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(deps: unknown[
 
   useEffect(() => {
     const root = ref.current ?? document;
-    const els = Array.from(root.querySelectorAll<HTMLElement>('.reveal, .wow'));
 
-    if (els.length === 0) return;
+    // Wait a frame so route content is painted before we query/observe
+    let cancelled = false;
+    let observer: IntersectionObserver | null = null;
+    const timers: number[] = [];
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || !('IntersectionObserver' in window)) {
-      els.forEach((el) => {
-        el.classList.add('is-visible', 'animated');
-      });
-      return;
-    }
+    const run = () => {
+      if (cancelled) return;
+      const els = Array.from(root.querySelectorAll<HTMLElement>('.reveal, .wow'));
+      if (els.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target as HTMLElement;
-          const delayAttr = el.getAttribute('data-wow-delay') || el.style.transitionDelay || '';
-          const delayMs = parseDelay(delayAttr);
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('is-visible', 'animated'));
+        return;
+      }
 
-          window.setTimeout(() => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            const delayAttr = el.getAttribute('data-wow-delay') || el.style.transitionDelay || '';
+            const delayMs = parseDelay(delayAttr);
+
+            const id = window.setTimeout(() => {
+              el.classList.add('is-visible', 'animated');
+            }, delayMs);
+            timers.push(id);
+
+            observer?.unobserve(el);
+          });
+        },
+        { threshold: 0.05, rootMargin: '0px 0px -24px 0px' },
+      );
+
+      els.forEach((el) => observer!.observe(el));
+
+      // Safety: never leave content stuck invisible after a route change
+      const safety = window.setTimeout(() => {
+        els.forEach((el) => {
+          if (!el.classList.contains('is-visible') && !el.classList.contains('animated')) {
             el.classList.add('is-visible', 'animated');
-          }, delayMs);
-
-          observer.unobserve(el);
+          }
         });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -48px 0px' },
-    );
+      }, 1200);
+      timers.push(safety);
+    };
 
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const raf = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(run);
+    });
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(raf);
+      observer?.disconnect();
+      timers.forEach((id) => window.clearTimeout(id));
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 

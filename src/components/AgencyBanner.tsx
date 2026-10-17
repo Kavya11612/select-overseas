@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, Award } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 export default function AgencyBanner() {
   return (
@@ -22,13 +22,7 @@ export default function AgencyBanner() {
           <div className="wow fadeIn hidden h-16 w-px bg-white/20 lg:block" />
 
           <div className="wow fadeInRight flex flex-col gap-3 sm:flex-row sm:items-center lg:justify-end">
-            <a
-              href="tel:+917893537375"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/20 transition hover:bg-white/15"
-            >
-              <Phone className="h-4 w-4" /> +91 78935 37375
-            </a>
-            <Link to="/contact" className="btn-accent justify-center">
+            <Link to="/contact" className="btn-accent relative z-10 justify-center">
               Call For Consultation
             </Link>
           </div>

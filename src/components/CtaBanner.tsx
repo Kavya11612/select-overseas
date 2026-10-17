@@ -18,7 +18,7 @@ export default function CtaBanner() {
             Book a free consultation with our experts and discover the best opportunities for your
             academic future.
           </p>
-          <Link to="/contact" className="btn-accent wow fadeInUp mt-8 !text-base" data-wow-delay="280ms">
+          <Link to="/contact" className="btn-accent mt-8 !text-base">
             Schedule Consultation <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

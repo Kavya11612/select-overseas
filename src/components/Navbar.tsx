@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { navLinks, type NavItem } from '@/data';
 import BrandLogo from '@/components/BrandLogo';
 
@@ -53,22 +53,16 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <a
-              href="tel:+917893537375"
-              className="flex items-center gap-2 text-sm font-semibold text-neutral-700 transition-colors hover:text-primary-600"
-            >
-              <Phone className="h-4 w-4" />
-              +91 78935 37375
-            </a>
+          <div className="relative z-[70] hidden items-center gap-3 xl:flex">
             <Link to="/contact" className="btn-accent !py-2.5">
               Free Consultation
             </Link>
           </div>
 
           <button
+            type="button"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-neutral-900 xl:hidden"
+            className="relative z-[70] flex h-10 w-10 items-center justify-center rounded-lg text-neutral-900 xl:hidden"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -77,7 +71,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`fixed inset-0 z-[60] xl:hidden ${open ? '' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-[60] xl:hidden ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
         aria-hidden={!open}
       >
         <div
@@ -87,7 +81,7 @@ export default function Navbar() {
           onClick={closeAll}
         />
         <aside
-          className={`absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-white p-6 shadow-2xl transition-transform duration-400 ${
+          className={`absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-white p-6 shadow-2xl transition-transform duration-300 ${
             open ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -155,12 +149,6 @@ export default function Navbar() {
             </div>
           </div>
           <div className="space-y-3 border-t border-neutral-100 pt-4">
-            <a
-              href="tel:+917893537375"
-              className="flex items-center justify-center gap-2 rounded-full bg-neutral-100 px-5 py-3 text-sm font-semibold text-neutral-800"
-            >
-              <Phone className="h-4 w-4" /> +91 78935 37375
-            </a>
             <Link to="/contact" onClick={closeAll} className="btn-accent w-full">
               Free Consultation
             </Link>
