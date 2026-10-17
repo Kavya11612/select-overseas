@@ -130,12 +130,24 @@ export default function Footer() {
             <ul className="mt-5 space-y-5 text-[15px] text-white">
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-5 w-5 shrink-0 stroke-[1.75] text-[#f39200]" />
-                <div className="space-y-1">
-                  <a href="tel:04066333443" className="block transition hover:text-[#f39200]">
+                <div className="flex min-w-0 flex-col gap-1.5">
+                  <a
+                    href="tel:04066333443"
+                    className="whitespace-nowrap transition hover:text-[#f39200]"
+                  >
                     040-66333443
                   </a>
-                  <a href="tel:+917032037375" className="block transition hover:text-[#f39200]">
-                    +91 7032037375 +91 78935 37375
+                  <a
+                    href="tel:+917032037375"
+                    className="whitespace-nowrap transition hover:text-[#f39200]"
+                  >
+                    +91 70320 37375
+                  </a>
+                  <a
+                    href="tel:+917893537375"
+                    className="whitespace-nowrap transition hover:text-[#f39200]"
+                  >
+                    +91 78935 37375
                   </a>
                 </div>
               </li>
