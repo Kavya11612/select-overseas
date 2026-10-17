@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-white text-neutral-800 font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-primary-600/20 text-primary-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary-600/25 transition-all duration-300 hover:bg-primary-700 hover:shadow-xl hover:shadow-primary-600/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-neutral-900 ring-1 ring-neutral-200 transition-all duration-300 hover:bg-neutral-50 hover:ring-neutral-300 hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-100;
+  }
+  .section-label {
+    @apply inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-700 ring-1 ring-primary-100;
+  }
+  .section-label-dark {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent-200 ring-1 ring-white/15 backdrop-blur;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-500/30 transition-all duration-300 hover:bg-accent-600 hover:shadow-xl hover:shadow-accent-500/35 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #004b8d 0%, #f39200 100%);
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    background-size: 200% 100%;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Scroll reveals — WOW.js / Animate.css style (selectoverseaseducation.com) */
+.reveal,
+.wow {
+  opacity: 0;
+  visibility: hidden;
+}
+.reveal.is-visible,
+.wow.animated,
+.wow.is-visible {
+  opacity: 1;
+  visibility: visible;
+  animation-fill-mode: both;
+  animation-duration: 0.85s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal,
+.wow.fadeInUp,
+.wow:not([class*='fadeIn']):not([class*='zoomIn']):not([class*='slideIn']) {
+  transform: translate3d(0, 36px, 0);
+}
+.reveal.is-visible,
+.wow.fadeInUp.animated,
+.wow.fadeInUp.is-visible,
+.wow:not([class*='fadeIn']):not([class*='zoomIn']):not([class*='slideIn']).animated,
+.wow:not([class*='fadeIn']):not([class*='zoomIn']):not([class*='slideIn']).is-visible {
+  animation-name: animFadeInUp;
+  transform: none;
+}
+
+.wow.fadeInLeft {
+  transform: translate3d(-40px, 0, 0);
+}
+.wow.fadeInLeft.animated,
+.wow.fadeInLeft.is-visible {
+  animation-name: animFadeInLeft;
+  transform: none;
+}
+
+.wow.fadeInRight {
+  transform: translate3d(40px, 0, 0);
+}
+.wow.fadeInRight.animated,
+.wow.fadeInRight.is-visible {
+  animation-name: animFadeInRight;
+  transform: none;
+}
+
+.wow.fadeInDown {
+  transform: translate3d(0, -36px, 0);
+}
+.wow.fadeInDown.animated,
+.wow.fadeInDown.is-visible {
+  animation-name: animFadeInDown;
+  transform: none;
+}
+
+.wow.zoomIn {
+  transform: scale(0.88);
+}
+.wow.zoomIn.animated,
+.wow.zoomIn.is-visible {
+  animation-name: animZoomIn;
+  transform: none;
+}
+
+.wow.fadeIn {
+  transform: none;
+}
+.wow.fadeIn.animated,
+.wow.fadeIn.is-visible {
+  animation-name: animFadeIn;
+}
+
+@keyframes animFadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 36px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes animFadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -36px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes animFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes animFadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes animZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes animFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Split heading — word rotate-in (Visora / GSAP split-in-rotate) */
+.split-heading .split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.split-heading .split-word-inner {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0) rotate(8deg);
+  opacity: 0;
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease;
+}
+.split-heading.is-split-visible .split-word-inner {
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  opacity: 1;
+}
+
+/* Soft float for decorative cards */
+.anim-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .wow,
+  .split-heading .split-word-inner {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
